@@ -6,7 +6,7 @@ import { AuthorCard } from "@/components/author/AuthorCard";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: `Our Authors - ${siteConfig.title}`,
+  title: `Our Authors | ${siteConfig.shortTitle}`,
   description: `Meet the expert authors behind ${siteConfig.title}.`,
 };
 

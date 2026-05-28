@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   const article = await getArticle(category, slug);
   if (!article) return { title: "Article Not Found" };
   return {
-    title: `${article.title} - ${siteConfig.title}`,
+    title: `${article.title} | ${siteConfig.shortTitle}`,
     description: article.description,
     alternates: {
       canonical: `${siteConfig.url}/${category}/${slug}`,

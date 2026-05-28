@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: AuthorPageProps): Promise<Met
   const author = await getAuthorBySlug(slug);
   if (!author) return { title: "Author Not Found" };
   return {
-    title: `${author.name} - ${siteConfig.title}`,
+    title: `${author.name} | ${siteConfig.shortTitle}`,
     description: author.description || `Articles by ${author.name}`,
   };
 }

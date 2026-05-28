@@ -1,6 +1,7 @@
 export const siteConfig = {
   name: "senpaisite",
   title: "SenpaiSite — Your Ultimate Anime & Manga Guide",
+  shortTitle: "SenpaiSite",
   description: "In-depth anime reviews, manga guides, character analysis, and otaku culture coverage for passionate fans.",
   tagline: "Where Every Fan Finds Their Next Obsession",
   url: "https://senpaisite.com",

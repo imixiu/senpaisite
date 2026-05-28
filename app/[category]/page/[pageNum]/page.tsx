@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: PagedCategoryProps): Promise<
   if (page > totalPages) return { title: "Page Not Found" };
 
   return {
-    title: `${cat.label} - Page ${page} | ${siteConfig.title}`,
+    title: `${cat.label} — Page ${page} | ${siteConfig.shortTitle}`,
     description: `Page ${page} of ${cat.label} articles - ${cat.description}`,
     alternates: {
       canonical: `${siteConfig.url}/${category}/page/${page}`,

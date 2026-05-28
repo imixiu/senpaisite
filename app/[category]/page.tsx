@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   const cat = siteConfig.categories.find((c) => c.key === category);
   if (!cat) return { title: "Category Not Found" };
   return {
-    title: `${cat.label} - ${siteConfig.title}`,
+    title: `${cat.label} | ${siteConfig.shortTitle}`,
     description: cat.description,
     alternates: {
       canonical: `${siteConfig.url}/${category}`,
