@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.senpaisite.com"
+        }
+      ],
+      "destination": "https://senpaisite.com/$1",
+      "permanent": true
+    }
+  ]
+}
