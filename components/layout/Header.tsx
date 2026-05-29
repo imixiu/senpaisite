@@ -13,7 +13,7 @@ export function Header() {
             {cat.label}
           </Link>
         ))}
-        <Link href="/author">Authors</Link>
+        <Link href="/author/team">Authors</Link>
       </nav>
     </header>
   );
