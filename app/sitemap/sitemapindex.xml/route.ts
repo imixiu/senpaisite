@@ -32,7 +32,7 @@ export async function GET() {
 
   // Article sitemaps
   for (let i = 1; i <= numSitemaps; i++) {
-    xml += `<sitemap>\n<loc>${SITE_URL}/sitemap/${i}.xml</loc>\n<lastmod>${new Date().toISOString().split('T')[0]}</lastmod>\n</sitemap>\n`;
+    xml += `<sitemap>\n<loc>${SITE_URL}/sitemap/sitemap${i}.xml</loc>\n<lastmod>${new Date().toISOString().split('T')[0]}</lastmod>\n</sitemap>\n`;
   }
 
   xml += `</sitemapindex>\n`;

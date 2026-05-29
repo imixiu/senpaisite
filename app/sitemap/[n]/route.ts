@@ -13,7 +13,12 @@ export async function GET(
   { params }: { params: Promise<{ n: string }> }
 ) {
   const resolvedParams = await params;
-  const pageNum = parseInt(resolvedParams.n);
+  // Parse sitemap1.xml, sitemap2.xml, etc.
+  const match = resolvedParams.n.match(/^sitemap(\d+)\.xml$/);
+  if (!match) {
+    return new NextResponse('Invalid sitemap file', { status: 404 });
+  }
+  const pageNum = parseInt(match[1]);
 
   if (isNaN(pageNum) || pageNum < 1) {
     return new NextResponse('Invalid sitemap number', { status: 400 });
