@@ -116,11 +116,12 @@ export async function getAuthorBySlug(slug: string): Promise<Author | null> {
 }
 
 export async function getArticlesByAuthor(authorName: string): Promise<ArticlePreview[]> {
+  // Match by name OR slug (articles.author may store either)
   const rows = await query(
     `SELECT id, short_title, site, type, title, description, img, author, published_time, tag, is_online
-     FROM articles WHERE site = $1 AND author = $2 AND is_online = 'Y'
+     FROM articles WHERE site = $1 AND (author = $2 OR author = $3) AND is_online = 'Y'
      ORDER BY published_time DESC`,
-    [SITE, authorName]
+    [SITE, authorName, authorName.toLowerCase().replace(/\s+/g, '-')]
   );
   return rows.map(mapPreview);
 }
