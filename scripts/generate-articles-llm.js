@@ -245,8 +245,11 @@ async function processOne(idea, idx) {
   const url = '/' + idea.type + '/' + idea.slug;
 
   try {
+    // Generate description from body text instead of title
+    const descText = html.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+    const description = descText.substring(0, 155) + (descText.length > 155 ? '...' : '');
     await sql`INSERT INTO articles (site,type,short_title,language,published_time,modified_time,author,img,title,description,url,body,tag,is_online)
-      VALUES ('senpaisite',${idea.type},${idea.slug},'en',${pubDate.toISOString()},${pubDate.toISOString()},${author},'',${''.concat(idea.title)},${idea.title.substring(0,150)},${url},${html},${idea.type},'Y')
+      VALUES ('senpaisite',${idea.type},${idea.slug},'en',${pubDate.toISOString()},${pubDate.toISOString()},${author},'',${''.concat(idea.title)},${description},${url},${html},${idea.type},'Y')
       ON CONFLICT (site, short_title) DO UPDATE SET body = EXCLUDED.body, published_time = EXCLUDED.published_time, modified_time = EXCLUDED.modified_time, author = EXCLUDED.author, is_online = 'Y', type = EXCLUDED.type, title = EXCLUDED.title, description = EXCLUDED.description, url = EXCLUDED.url, tag = EXCLUDED.tag`;
     return { ok: true, slug: idea.slug, score };
   } catch (e) {
