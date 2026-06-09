@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="site-footer">
       <div className="footer-content">
         <div className="footer-brand">
-          <span className="footer-logo">{siteConfig.title}</span>
+          <span className="footer-logo">{siteConfig.shortTitle}</span>
           <p>{siteConfig.description}</p>
         </div>
         <nav className="footer-nav">

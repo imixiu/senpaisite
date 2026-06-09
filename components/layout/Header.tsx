@@ -5,7 +5,7 @@ export function Header() {
   return (
     <header className="site-header">
       <Link href="/" className="logo">
-        {siteConfig.title}
+        {siteConfig.shortTitle}
       </Link>
       <nav className="main-nav">
         {siteConfig.categories.map((cat) => (
