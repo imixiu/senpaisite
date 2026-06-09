@@ -1,3 +1,5 @@
+export const revalidate = 31536000;
+
 export const dynamic = "force-dynamic";
 
 import { getAllAuthors } from "@/lib/queries";

@@ -53,7 +53,9 @@ export async function getArticlesByCategory(category: string, page = 1, pageSize
 
 export async function getArticle(category: string, slug: string): Promise<Article | null> {
   const rows = await query(
-    `SELECT * FROM articles WHERE site = $1 AND type = $2 AND short_title = $3 AND is_online = 'Y' LIMIT 1`,
+    `SELECT a.*, au.img as author_img FROM articles a
+     LEFT JOIN authors au ON au.site = a.site AND (au.name = a.author OR au.slug = a.author)
+     WHERE a.site = $1 AND a.type = $2 AND a.short_title = $3 AND a.is_online = 'Y' LIMIT 1`,
     [SITE, category, slug]
   );
   if (rows.length === 0) return null;
@@ -67,6 +69,7 @@ export async function getArticle(category: string, slug: string): Promise<Articl
     description: row.description,
     img: row.img,
     author: row.author,
+    authorImg: row.author_img,
     publishDate: formatDate(row.published_time),
     body: row.body,
     url: row.url,
