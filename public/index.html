@@ -79,7 +79,7 @@ img{max-width:100%;display:block}
 
 /* Latest articles */
 .articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem}
-.article-card{background:var(--card-bg);border-radius:var(--radius);border:1px solid var(--border);padding:1.25rem;transition:transform .2s}
+.article-card{background:var(--card-bg);border-radius:var(--radius);border:1px solid var(--border);padding:1.25rem;transition:transform .2s;display:block;text-decoration:none;color:inherit}
 .article-card:hover{transform:translateY(-2px)}
 .article-card .tag{display:inline-block;font-size:.75rem;font-weight:600;color:var(--primary);background:rgba(124,58,237,.08);padding:.2rem .6rem;border-radius:20px;margin-bottom:.75rem}
 .article-card h3{font-size:1rem;font-weight:600;line-height:1.4;margin-bottom:.5rem}
@@ -123,6 +123,8 @@ img{max-width:100%;display:block}
   .cat-grid,.articles-grid,.authors-grid{grid-template-columns:1fr}
 }
 </style>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js" data-speed="4"></script>
 </head>
 <body>
 
@@ -199,12 +201,7 @@ img{max-width:100%;display:block}
   <h2 class="section-title">Latest Articles</h2>
   <p class="section-subtitle">Fresh content from our team of anime and manga experts.</p>
   <div class="articles-grid" id="latest-articles">
-    <div class="article-card"><span class="tag">Anime Reviews</span><h3>Why Frieren: Beyond Journey's End Redefines the Fantasy Genre</h3><div class="meta">By Yuki Tanaka · 8 min read</div></div>
-    <div class="article-card"><span class="tag">Manga Guides</span><h3>The Complete Reading Order for the Monogatari Light Novel Series</h3><div class="meta">By Kenji Park · 12 min read</div></div>
-    <div class="article-card"><span class="tag">Character Analysis</span><h3>Understanding Gojo Satoru: Power, Loneliness, and the Weight of Being the Strongest</h3><div class="meta">By Aiko Yamamoto · 10 min read</div></div>
-    <div class="article-card"><span class="tag">Seasonal Anime</span><h3>Spring 2025 Anime Preview: 10 Shows You Shouldn't Miss This Season</h3><div class="meta">By Sakura Williams · 15 min read</div></div>
-    <div class="article-card"><span class="tag">Otaku Culture</span><h3>How Anime Conventions Changed After the Pandemic: A 2025 Field Report</h3><div class="meta">By Liam Chen · 7 min read</div></div>
-    <div class="article-card"><span class="tag">Cosplay & Fan Art</span><h3>From Foam to Fabric: A Beginner's Guide to Building Your First Armor Cosplay</h3><div class="meta">By Hiro Nakamura · 11 min read</div></div>
+    {{LATEST_ARTICLES}}
   </div>
 </section>
 
