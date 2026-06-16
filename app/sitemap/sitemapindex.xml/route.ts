@@ -4,7 +4,7 @@ import { SITE } from '@/lib/db';
 import { siteConfig } from '@/lib/site-config';
 
 const SITE_URL = siteConfig.url;
-const ARTICLES_PER_SITEMAP = 50000;
+const ARTICLES_PER_SITEMAP = 5000;
 
 export const revalidate = 3600;
 

@@ -35,11 +35,17 @@ const CONCURRENCY = 5;
 
 const TOPIC_PROMPTS = {
   'anime-reviews': 'anime screenshot, vibrant cel-shaded animation, dynamic scene, cinematic composition, professional editorial illustration',
+  'anime reviews': 'anime screenshot, vibrant cel-shaded animation, dynamic scene, cinematic composition, professional editorial illustration',
   'manga-guides': 'manga art, black and white ink illustration, detailed pen work, dramatic panel composition, Japanese comic art',
+  'manga guides': 'manga art, black and white ink illustration, detailed pen work, dramatic panel composition, Japanese comic art',
   'character-analysis': 'anime character portrait, expressive face, detailed illustration, emotional moment, vibrant colors, professional character art',
+  'characters': 'anime character portrait, expressive face, detailed illustration, emotional moment, vibrant colors, professional character art',
   'otaku-culture': 'Japanese pop culture scene, anime merchandise, convention atmosphere, colorful fandom display, editorial photography style',
+  'otaku culture': 'Japanese pop culture scene, anime merchandise, convention atmosphere, colorful fandom display, editorial photography style',
   'seasonal-anime': 'seasonal anime key visual, vibrant poster art, dynamic composition, Japanese animation studio quality, editorial illustration',
   'cosplay-fan': 'anime cosplay photography, detailed costume, creative fan art, convention setting, professional cosplay portrait',
+  'power-scaling': 'epic anime battle scene, power energy aura, dynamic action pose, vibrant energy blasts, cinematic wide angle, professional editorial illustration',
+  'lore': 'dark mysterious anime landscape, ancient ruins, mystical atmosphere, detailed world-building scene, cinematic lighting, professional editorial illustration',
 };
 
 function fetchUrl(url) {
@@ -126,7 +132,7 @@ function blobUpload(localPath, pathname) {
 
 async function processOne(article, idx) {
   const { id, short_title, type } = article;
-  const typePrompt = TOPIC_PROMPTS[type] || 'anime illustration, professional editorial art';
+  const typePrompt = TOPIC_PROMPTS[type] || TOPIC_PROMPTS[(type||'').toLowerCase()] || 'anime illustration, professional editorial art';
   const titleWords = short_title.replace(/-/g, ' ').substring(0, 80);
   const prompt = `Professional blog cover image for: "${titleWords}". ${typePrompt}. Clean, modern, no text overlay.`;
 

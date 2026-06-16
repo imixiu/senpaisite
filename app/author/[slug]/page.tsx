@@ -4,9 +4,10 @@ export const dynamic = "force-dynamic";
 
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getAuthorBySlug, getArticlesByAuthor } from "@/lib/queries";
+import { getAuthorBySlug, getArticlesByAuthor, getAllAuthors } from "@/lib/queries";
 import { siteConfig } from "@/lib/site-config";
 import { ArticleCard } from "@/components/article/ArticleCard";
+import { AuthorCard } from "@/components/author/AuthorCard";
 
 interface AuthorPageProps {
   params: Promise<{ slug: string }>;
@@ -14,6 +15,14 @@ interface AuthorPageProps {
 
 export async function generateMetadata({ params }: AuthorPageProps): Promise<Metadata> {
   const { slug } = await params;
+  
+  if (slug === "team") {
+    return {
+      title: `Our Team | ${siteConfig.shortTitle}`,
+      description: `Meet the expert team behind ${siteConfig.title}.`,
+    };
+  }
+  
   const author = await getAuthorBySlug(slug);
   if (!author) return { title: "Author Not Found" };
   return {
@@ -24,6 +33,27 @@ export async function generateMetadata({ params }: AuthorPageProps): Promise<Met
 
 export default async function AuthorPage({ params }: AuthorPageProps) {
   const { slug } = await params;
+  
+  // Special handling for /author/team - show all authors
+  if (slug === "team") {
+    const authors = await getAllAuthors();
+    const memberAuthors = authors.filter((a) => a.slug !== "team");
+    
+    return (
+      <div className="authors-page">
+        <section className="authors-banner">
+          <h1>Our Team</h1>
+          <p>Meet the professionals behind our content.</p>
+        </section>
+        <section className="authors-grid">
+          {memberAuthors.map((author) => (
+            <AuthorCard key={author.id} author={author} />
+          ))}
+        </section>
+      </div>
+    );
+  }
+  
   const author = await getAuthorBySlug(slug);
   if (!author) notFound();
 
