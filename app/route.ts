@@ -1,6 +1,5 @@
-import { readFile } from "fs/promises";
-import path from "path";
-import { Pool } from "pg";
+import { INDEX_HTML } from "../lib/index-html";
+import { neon } from "@neondatabase/serverless";
 
 function escapeHtml(s: string) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -16,19 +15,17 @@ function formatAuthor(author: string | null) {
 }
 
 export async function GET() {
-  const filePath = path.join(process.cwd(), "public", "index.html");
-  let html = await readFile(filePath, "utf-8");
+  let html = INDEX_HTML;
 
   try {
     const dbUrl = (process.env.DATABASE_URL || process.env.POSTGRES_URL || "").replace("-pooler", "");
     if (dbUrl) {
-      const pool = new Pool({ connectionString: dbUrl, ssl: { rejectUnauthorized: false }, max: 1 });
-      const { rows } = await pool.query(
+      const sql = neon(dbUrl);
+      const rows = await sql(
         "SELECT type, short_title, title, author, img FROM articles WHERE site='senpaisite' AND is_online='Y' ORDER BY published_time DESC LIMIT 6"
       );
-      await pool.end();
 
-      const cards = rows.map((r) => {
+      const cards = (rows as any[]).map((r) => {
         const url = `/${r.type}/${r.short_title}`;
         const title = escapeHtml(r.title);
         const tag = formatType(r.type);
