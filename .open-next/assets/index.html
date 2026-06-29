@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-95PY8PSZ0Y"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-95PY8PSZ0Y');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SenpaiSite — Your Ultimate Anime &amp; Manga Guide</title>
+<meta name="description" content="In-depth anime reviews, manga guides, character analysis, and otaku culture coverage for passionate fans.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="SenpaiSite — Your Ultimate Anime & Manga Guide">
+<meta property="og:description" content="In-depth anime reviews, manga guides, character analysis, and otaku culture coverage for passionate fans.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://senpaisite.com">
+<meta property="og:image" content="https://s.alicdn.com/@sc02/kf/A362ae581c6614f3aa9bc423839876c92O.jpg">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SenpaiSite — Your Ultimate Anime & Manga Guide">
+<meta name="twitter:description" content="In-depth anime reviews, manga guides, character analysis, and otaku culture coverage for passionate fans.">
+<meta name="twitter:image" content="https://s.alicdn.com/@sc02/kf/A362ae581c6614f3aa9bc423839876c92O.jpg">
+
+<link rel="canonical" href="https://senpaisite.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#7c3aed;--primary-dark:#6d28d9;--primary-light:#a78bfa;
+  --secondary:#ec4899;--accent:#f59e0b;
+  --bg:#faf5ff;--dark:#1e1b4b;--white:#fff;
+  --text:#1f2937;--muted:#6b7280;--border:#e5e7eb;
+  --card-bg:#fff;--radius:12px;
+}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.6}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 5%;background:var(--white);border-bottom:1px solid var(--border);box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.logo{font-size:1.5rem;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.main-nav{display:flex;gap:1.5rem;flex-wrap:wrap}
+.main-nav a{color:var(--muted);font-weight:500;font-size:.95rem;transition:color .2s}
+.main-nav a:hover{color:var(--primary)}
+
+/* Hero */
+.hero{position:relative;min-height:480px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://s.alicdn.com/@sc02/kf/A362ae581c6614f3aa9bc423839876c92O.jpg') center/cover;filter:brightness(.45)}
+.hero-content{position:relative;z-index:2;max-width:700px;padding:3rem 2rem;color:var(--white)}
+.hero h1{font-size:3rem;font-weight:800;line-height:1.15;margin-bottom:1rem;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+.hero p{font-size:1.2rem;opacity:.9;margin-bottom:2rem}
+.hero-btn{display:inline-block;padding:.85rem 2rem;background:var(--primary);color:var(--white);border-radius:var(--radius);font-weight:600;font-size:1rem;transition:background .2s}
+.hero-btn:hover{background:var(--primary-dark)}
+
+/* Section shared */
+.section{padding:4rem 5%;max-width:1200px;margin:0 auto}
+.section-title{font-size:1.8rem;font-weight:700;margin-bottom:.5rem;color:var(--dark)}
+.section-subtitle{color:var(--muted);margin-bottom:2rem;font-size:1.05rem}
+
+/* Categories */
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+.cat-card{background:var(--card-bg);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);transition:transform .2s,box-shadow .2s}
+.cat-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(124,58,237,.12)}
+.cat-card img{width:100%;height:180px;object-fit:cover}
+.cat-card-body{padding:1.25rem}
+.cat-card h3{font-size:1.15rem;font-weight:700;color:var(--primary-dark);margin-bottom:.5rem}
+.cat-card p{color:var(--muted);font-size:.9rem;line-height:1.5}
+.cat-card a{display:inline-block;margin-top:.75rem;color:var(--primary);font-weight:600;font-size:.9rem}
+
+/* Latest articles */
+.articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem}
+.article-card{background:var(--card-bg);border-radius:var(--radius);border:1px solid var(--border);padding:1.25rem;transition:transform .2s;display:block;text-decoration:none;color:inherit}
+.article-card:hover{transform:translateY(-2px)}
+.article-card .tag{display:inline-block;font-size:.75rem;font-weight:600;color:var(--primary);background:rgba(124,58,237,.08);padding:.2rem .6rem;border-radius:20px;margin-bottom:.75rem}
+.article-card h3{font-size:1rem;font-weight:600;line-height:1.4;margin-bottom:.5rem}
+.article-card .meta{color:var(--muted);font-size:.8rem}
+
+/* About */
+.about-section{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:var(--white);border-radius:var(--radius);padding:3rem;margin:2rem auto;max-width:1200px}
+.about-section h2{font-size:1.6rem;margin-bottom:1rem}
+.about-section p{opacity:.9;line-height:1.7;max-width:800px}
+.about-stats{display:flex;gap:3rem;margin-top:2rem;flex-wrap:wrap}
+.about-stats .stat{text-align:center}
+.about-stats .stat-num{font-size:2rem;font-weight:800}
+.about-stats .stat-label{font-size:.85rem;opacity:.8}
+
+/* Authors */
+.authors-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.25rem}
+.author-card{text-align:center;padding:1.5rem 1rem;background:var(--card-bg);border-radius:var(--radius);border:1px solid var(--border)}
+.author-card img{width:80px;height:80px;border-radius:50%;margin:0 auto .75rem;object-fit:cover;border:3px solid var(--primary-light)}
+.author-card h4{font-size:.95rem;font-weight:600;margin-bottom:.25rem}
+.author-card p{color:var(--muted);font-size:.8rem;line-height:1.4}
+
+/* Newsletter */
+.newsletter{background:var(--dark);color:var(--white);padding:3rem 5%;text-align:center;border-radius:var(--radius);max-width:1200px;margin:2rem auto}
+.newsletter h2{font-size:1.5rem;margin-bottom:.5rem}
+.newsletter p{opacity:.8;margin-bottom:1.5rem}
+.newsletter .cta-btn{display:inline-block;padding:.75rem 2rem;background:var(--secondary);color:var(--white);border-radius:var(--radius);font-weight:600;transition:opacity .2s}
+.newsletter .cta-btn:hover{opacity:.85}
+
+/* Footer */
+.site-footer{background:var(--dark);color:rgba(255,255,255,.7);padding:3rem 5% 1.5rem;margin-top:2rem}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:2rem}
+.footer-col h4{color:var(--white);font-size:.95rem;margin-bottom:.75rem}
+.footer-col a{display:block;color:rgba(255,255,255,.6);font-size:.85rem;margin-bottom:.4rem;transition:color .2s}
+.footer-col a:hover{color:var(--primary-light)}
+.footer-bottom{max-width:1200px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.1);text-align:center;font-size:.8rem;opacity:.6}
+
+@media(max-width:768px){
+  .hero h1{font-size:2rem}
+  .main-nav{display:none}
+  .about-stats{gap:1.5rem}
+  .cat-grid,.articles-grid,.authors-grid{grid-template-columns:1fr}
+}
+</style>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <a href="/" class="logo">SenpaiSite</a>
+  <nav class="main-nav">
+    <a href="/anime-reviews">Anime Reviews</a>
+    <a href="/manga-guides">Manga Guides</a>
+    <a href="/character-analysis">Characters</a>
+    <a href="/otaku-culture">Otaku Culture</a>
+    <a href="/seasonal-anime">Seasonal</a>
+    <a href="/cosplay-fan">Cosplay & Fan Art</a>
+    <a href="/author/team">Authors</a>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1>Your Ultimate Anime &amp; Manga Guide</h1>
+    <p>In-depth reviews, manga reading guides, character breakdowns, and otaku culture coverage — written by fans, for fans.</p>
+    <a href="/anime-reviews" class="hero-btn">Explore Reviews</a>
+  </div>
+</section>
+
+<!-- Categories -->
+<section class="section">
+  <h2 class="section-title">Explore by Category</h2>
+  <p class="section-subtitle">From seasonal previews to deep character studies — find exactly what you're looking for.</p>
+  <div class="cat-grid">
+    <div class="cat-card">
+      <img src="https://s.alicdn.com/@sc02/kf/A85c9309f39fa4008b2ad86bb4385e2c5a.jpg" alt="Anime Reviews" loading="lazy" width="400" height="300">
+      <div class="cat-card-body">
+        <h3>Anime Reviews</h3>
+        <p>Honest, detailed reviews of the latest and greatest anime series and films. We break down animation quality, story, characters, and rewatch value.</p>
+        <a href="/anime-reviews">Browse Reviews →</a>
+      </div>
+    </div>
+    <div class="cat-card">
+      <img src="https://s.alicdn.com/@sc02/kf/A00a7a61fcde0497d8a3d1282980f12089.jpg" alt="Manga Guides" loading="lazy" width="400" height="300">
+      <div class="cat-card-body">
+        <h3>Manga Guides</h3>
+        <p>Reading orders, publisher comparisons, and deep dives into manga masterpieces. Whether you're starting One Piece or exploring indie works.</p>
+        <a href="/manga-guides">Browse Guides →</a>
+      </div>
+    </div>
+    <div class="cat-card">
+      <img src="https://s.alicdn.com/@sc02/kf/A25b9053fe1184ef0a98decb70c99db4bV.jpg" alt="Cosplay & Fan Art" loading="lazy" width="400" height="300">
+      <div class="cat-card-body">
+        <h3>Cosplay &amp; Fan Art</h3>
+        <p>Cosplay construction tips, convention coverage, and community fan art showcases. Celebrating the creativity of the anime fandom.</p>
+        <a href="/cosplay-fan">Browse Cosplay →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About / Stats -->
+<div class="about-section">
+  <h2>Why SenpaiSite?</h2>
+  <p>We're a team of passionate anime and manga enthusiasts who believe every fan deserves thoughtful, well-researched content. No clickbait rankings, no filler articles — just genuine recommendations and analysis from people who actually watch and read the stuff. Whether you're a newcomer looking for your first anime or a veteran otaku searching for hidden gems, we've got you covered.</p>
+  <div class="about-stats">
+    <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Articles Published</div></div>
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">Categories</div></div>
+    <div class="stat"><div class="stat-num">10</div><div class="stat-label">Expert Writers</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Fan-Driven</div></div>
+  </div>
+</div>
+
+<!-- Latest Articles (placeholder — will be populated from DB) -->
+<section class="section">
+  <h2 class="section-title">Latest Articles</h2>
+  <p class="section-subtitle">Fresh content from our team of anime and manga experts.</p>
+  <div class="articles-grid" id="latest-articles">
+    {{LATEST_ARTICLES}}
+  </div>
+</section>
+
+<!-- Authors -->
+<section class="section">
+  <h2 class="section-title">Meet Our Writers</h2>
+  <p class="section-subtitle">Passionate fans who bring years of anime expertise to every article.</p>
+  <div class="authors-grid">
+    <div class="author-card"><a href="/author/yuki-tanaka"><img src="https://s.alicdn.com/@sc02/kf/A1aabdd05f2db4b9faf7c67343a92ba84U.jpg" alt="Yuki Tanaka" loading="lazy" width="80" height="80"><h4>Yuki Tanaka</h4><p>Senior anime critic</p></a></div>
+    <div class="author-card"><a href="/author/marcus-reeves"><img src="https://s.alicdn.com/@sc02/kf/A692c3c894d2f48f6a19d02b4081baedd0.jpg" alt="Marcus Reeves" loading="lazy" width="80" height="80"><h4>Marcus Reeves</h4><p>Manga historian</p></a></div>
+    <div class="author-card"><a href="/author/aiko-yamamoto"><img src="https://s.alicdn.com/@sc02/kf/Aec001b03852747a8a5433dbc21bf5ec86.jpg" alt="Aiko Yamamoto" loading="lazy" width="80" height="80"><h4>Aiko Yamamoto</h4><p>Character psychologist</p></a></div>
+    <div class="author-card"><a href="/author/liam-chen"><img src="https://s.alicdn.com/@sc02/kf/A10c6c37fc58f4aa9aef7ebc3ad119e9eT.jpg" alt="Liam Chen" loading="lazy" width="80" height="80"><h4>Liam Chen</h4><p>Otaku culture journalist</p></a></div>
+    <div class="author-card"><a href="/author/sakura-williams"><img src="https://s.alicdn.com/@sc02/kf/A3f721832e9714b2d9005b4dc30619f016.jpg" alt="Sakura Williams" loading="lazy" width="80" height="80"><h4>Sakura Williams</h4><p>Seasonal anime guide</p></a></div>
+    <div class="author-card"><a href="/author/hiro-nakamura"><img src="https://s.alicdn.com/@sc02/kf/A6f865861ec9644b9b18809320e6654add.jpg" alt="Hiro Nakamura" loading="lazy" width="80" height="80"><h4>Hiro Nakamura</h4><p>Cosplay veteran</p></a></div>
+    <div class="author-card"><a href="/author/emma-rodriguez"><img src="https://s.alicdn.com/@sc02/kf/Af8e845d83e1b4bd187af8e6dca249beca.jpg" alt="Emma Rodriguez" loading="lazy" width="80" height="80"><h4>Emma Rodriguez</h4><p>Anime film critic</p></a></div>
+    <div class="author-card"><a href="/author/kenji-park"><img src="https://s.alicdn.com/@sc02/kf/A70cc4716912f4510af33a0992dd77dcdk.jpg" alt="Kenji Park" loading="lazy" width="80" height="80"><h4>Kenji Park</h4><p>Light novel specialist</p></a></div>
+    <div class="author-card"><a href="/author/meilin-foster"><img src="https://s.alicdn.com/@sc02/kf/A70902af293b64a5c92dc7e169f85aba5e.jpg" alt="Mei-Lin Foster" loading="lazy" width="80" height="80"><h4>Mei-Lin Foster</h4><p>Community reporter</p></a></div>
+  </div>
+</section>
+
+<!-- Newsletter CTA -->
+<div class="newsletter">
+  <h2>Never Miss a Seasonal Drop</h2>
+  <p>Get weekly anime picks, manga recommendations, and exclusive content delivered to your inbox.</p>
+  <a href="/anime-reviews" class="cta-btn">Start Exploring</a>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>Categories</h4>
+      <a href="/anime-reviews">Anime Reviews</a>
+      <a href="/manga-guides">Manga Guides</a>
+      <a href="/character-analysis">Character Analysis</a>
+      <a href="/otaku-culture">Otaku Culture</a>
+      <a href="/seasonal-anime">Seasonal Anime</a>
+      <a href="/cosplay-fan">Cosplay & Fan Art</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="/author/team">Our Writers</a>
+      <a href="/anime-reviews/page/2">More Articles</a>
+    </div>
+    <div class="footer-col">
+      <h4>Popular Topics</h4>
+      <a href="/anime-reviews">Best Anime of 2025</a>
+      <a href="/manga-guides">Must-Read Manga Series</a>
+      <a href="/character-analysis">Iconic Anime Villains</a>
+      <a href="/seasonal-anime">Current Season Watchlist</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 SenpaiSite. All rights reserved. Made with ❤️ by anime fans.</p>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"SenpaiSite — Your Ultimate Anime & Manga Guide","url":"https://senpaisite.com","description":"In-depth anime reviews, manga guides, character analysis, and otaku culture coverage for passionate fans."}
+</script>
+
+</body>
+</html>

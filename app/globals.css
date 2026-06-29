@@ -720,3 +720,14 @@ body {
 .breadcrumb-current {
   color: var(--text-muted, #9ca3af);
 }
+
+/* ========== STATIC PAGES ========== */
+.static-page { padding: 120px 24px 80px; max-width: 780px; margin: 0 auto; }
+.static-page-inner h1 { font-size: clamp(28px, 4vw, 42px); font-weight: 700; margin-bottom: 24px; color: #1c1917; }
+.static-page-inner .last-updated { color: #78716c; font-size: 14px; margin-bottom: 32px; }
+.static-page-inner section { margin-bottom: 32px; }
+.static-page-inner h2 { font-size: 22px; font-weight: 600; margin-bottom: 12px; color: #1c1917; }
+.static-page-inner p, .static-page-inner li { font-size: 16px; line-height: 1.8; color: #1c1917; margin-bottom: 12px; }
+.static-page-inner ul { padding-left: 24px; margin-bottom: 12px; }
+.static-page-inner a { color: #d97706; text-decoration: underline; }
+.static-page-inner a:hover { color: #92400e; }

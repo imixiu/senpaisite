@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -68,7 +67,6 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
-        <Analytics />
       </body>
     </html>
   );

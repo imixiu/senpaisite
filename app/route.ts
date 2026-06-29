@@ -1,5 +1,7 @@
 import { INDEX_HTML } from "../lib/index-html";
-import { neon } from "@neondatabase/serverless";
+import * as mysql from "mysql2/promise";
+
+export const dynamic = "force-dynamic";
 
 function escapeHtml(s: string) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -14,14 +16,27 @@ function formatAuthor(author: string | null) {
   return author.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+async function getDb() {
+  const url = process.env.MYSQL_URL;
+  if (!url) throw new Error("MYSQL_URL not set");
+  const u = new URL(url);
+  return mysql.createConnection({
+    host: u.hostname,
+    port: parseInt(u.port || "3306"),
+    user: decodeURIComponent(u.username),
+    password: decodeURIComponent(u.password),
+    database: u.pathname.replace(/^\//, ""),
+    connectTimeout: 10000,
+  });
+}
+
 export async function GET() {
   let html = INDEX_HTML;
 
   try {
-    const dbUrl = (process.env.DATABASE_URL || process.env.POSTGRES_URL || "").replace("-pooler", "");
-    if (dbUrl) {
-      const sql = neon(dbUrl);
-      const rows = await sql(
+    const conn = await getDb();
+    try {
+      const [rows] = await conn.query(
         "SELECT type, short_title, title, author, img FROM articles WHERE site='senpaisite' AND is_online='Y' ORDER BY published_time DESC LIMIT 6"
       );
 
@@ -35,6 +50,8 @@ export async function GET() {
       }).join("\n    ");
 
       html = html.replace("{{LATEST_ARTICLES}}", cards);
+    } finally {
+      await conn.end();
     }
   } catch (e) {
     console.error("Failed to load latest articles:", e);
@@ -45,7 +62,7 @@ export async function GET() {
     status: 200,
     headers: {
       "Content-Type": "text/html; charset=utf-8",
-      "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300",
+      "Cache-Control": "public, max-age=31536000, s-maxage=31536000",
     },
   });
 }

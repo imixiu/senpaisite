@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://senpaisite.com/sitemap/sitemapindex.xml

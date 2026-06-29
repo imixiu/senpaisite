@@ -124,8 +124,6 @@ img{max-width:100%;display:block}
   .cat-grid,.articles-grid,.authors-grid{grid-template-columns:1fr}
 }
 </style>
-<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
-<script defer src="/_vercel/insights/script.js" data-speed="4"></script>
 </head>
 <body>
 
