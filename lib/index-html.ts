@@ -12,7 +12,8 @@ export const INDEX_HTML = `<!DOCTYPE html>
 </script>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/icon.png?v=2" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SenpaiSite — Your Ultimate Anime &amp; Manga Guide</title>
 <meta name="description" content="In-depth anime reviews, manga guides, character analysis, and otaku culture coverage for passionate fans.">
 
