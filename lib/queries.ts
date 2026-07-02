@@ -1,4 +1,5 @@
 import { query } from "./db";
+import { tairGet, tairSet } from "./tair";
 import { SITE } from "./db";
 import { Article, ArticlePreview, Author } from "./types";
 
@@ -52,6 +53,10 @@ export async function getArticlesByCategory(category: string, page = 1, pageSize
 }
 
 export async function getArticle(category: string, slug: string): Promise<Article | null> {
+  const key = `senpaisite:article:${category}:${slug}`;
+  const cached = await tairGet(key);
+  if (cached) return cached;
+
   const rows = await query(
     `SELECT a.*, au.img as author_img FROM articles a
      LEFT JOIN authors au ON au.site = a.site AND (au.name = a.author OR au.slug = a.author)
@@ -60,7 +65,7 @@ export async function getArticle(category: string, slug: string): Promise<Articl
   );
   if (rows.length === 0) return null;
   const row = rows[0] as any;
-  return {
+  const article = {
     id: row.id,
     slug: row.short_title,
     site: row.site,
@@ -78,6 +83,8 @@ export async function getArticle(category: string, slug: string): Promise<Articl
     tag: row.tag ?? null,
     isOnline: row.is_online ?? "Y",
   };
+  tairSet(key, article);
+  return article;
 }
 
 export async function getFeaturedArticle(): Promise<ArticlePreview | null> {
