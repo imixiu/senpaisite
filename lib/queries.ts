@@ -1,5 +1,5 @@
 import { query } from "./db";
-import { tairGet, tairSet } from "./tair";
+import { tairGet } from "./tair";
 import { SITE } from "./db";
 import { Article, ArticlePreview, Author } from "./types";
 
@@ -34,26 +34,26 @@ export async function getAllArticles(): Promise<ArticlePreview[]> {
   return rows.map(mapPreview);
 }
 
-export async function getArticlesByCategory(category: string, page = 1, pageSize = 24): Promise<{ articles: ArticlePreview[]; total: number }> {
+export async function getArticlesByType(type: string, page = 1, pageSize = 24): Promise<{ articles: ArticlePreview[]; total: number }> {
   const offset = (page - 1) * pageSize;
   const [rows, countRows] = await Promise.all([
     query(
       `SELECT id, short_title, site, type, title, description, img, author, published_time, tag, is_online
        FROM articles WHERE site = $1 AND type = $2 AND is_online = 'Y'
        ORDER BY published_time DESC LIMIT $3 OFFSET $4`,
-      [SITE, category, pageSize, offset]
+      [SITE, type, pageSize, offset]
     ),
     query(
       `SELECT COUNT(*) as count FROM articles WHERE site = $1 AND type = $2 AND is_online = 'Y'`,
-      [SITE, category]
+      [SITE, type]
     ),
   ]);
   const total = parseInt((countRows[0] as any).count, 10);
   return { articles: rows.map(mapPreview), total };
 }
 
-export async function getArticle(category: string, slug: string): Promise<Article | null> {
-  const key = `senpaisite:article:${category}:${slug}`;
+export async function getArticle(type: string, slug: string): Promise<Article | null> {
+  const key = `senpaisite:article:${type}:${slug}`;
   const cached = await tairGet(key);
   if (cached) return cached;
 
@@ -61,7 +61,7 @@ export async function getArticle(category: string, slug: string): Promise<Articl
     `SELECT a.*, au.img as author_img FROM articles a
      LEFT JOIN authors au ON au.site = a.site AND (au.name = a.author OR au.slug = a.author)
      WHERE a.site = $1 AND a.type = $2 AND a.short_title = $3 AND a.is_online = 'Y' LIMIT 1`,
-    [SITE, category, slug]
+    [SITE, type, slug]
   );
   if (rows.length === 0) return null;
   const row = rows[0] as any;
@@ -83,7 +83,7 @@ export async function getArticle(category: string, slug: string): Promise<Articl
     tag: row.tag ?? null,
     isOnline: row.is_online ?? "Y",
   };
-  tairSet(key, article);
+
   return article;
 }
 
@@ -98,12 +98,12 @@ export async function getFeaturedArticle(): Promise<ArticlePreview | null> {
   return mapPreview(rows[0]);
 }
 
-export async function getRelatedArticles(category: string, excludeId: number): Promise<ArticlePreview[]> {
+export async function getRelatedArticles(type: string, excludeId: number): Promise<ArticlePreview[]> {
   const rows = await query(
     `SELECT id, short_title, site, type, title, description, img, author, published_time, tag, is_online
      FROM articles WHERE site = $1 AND type = $2 AND id != $3 AND is_online = 'Y'
      ORDER BY published_time DESC LIMIT 3`,
-    [SITE, category, excludeId]
+    [SITE, type, excludeId]
   );
   return rows.map(mapPreview);
 }

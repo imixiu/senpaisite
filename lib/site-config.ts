@@ -19,5 +19,7 @@ export const siteConfig = {
     { key: "otaku-culture", label: "Otaku Culture", description: "Exploring the world of anime fandom, conventions, merchandise, and Japanese pop culture" },
     { key: "seasonal-anime", label: "Seasonal Anime", description: "Seasonal previews, watchlists, and ongoing coverage of currently airing anime" },
     { key: "cosplay-fan", label: "Cosplay & Fan Art", description: "Cosplay tips, fan art showcases, and creative community highlights" },
+    { key: "power-scaling", label: "Power Scaling", description: "In-depth power analyses, tier rankings, and battle comparisons across anime and manga" },
+    { key: "lore", label: "Lore & Worldbuilding", description: "Deep dives into anime and manga lore, world histories, and mythological references" },
   ] as { key: string; label: string; description: string }[],
 };

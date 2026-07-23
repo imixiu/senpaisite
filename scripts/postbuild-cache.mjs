@@ -92,5 +92,18 @@ patched = patched.replace(
             return resp;`
 );
 
+
+// 7. Block /_next/image at Worker entry — unoptimized: true means this route should never be hit
+patched = patched.replace(
+    `            const url = new URL(request.url);`,
+    `            const url = new URL(request.url);
+            if (url.pathname === "/_next/image") {
+                return new Response("Not Found", {
+                    status: 404,
+                    headers: { "Cache-Control": "public, max-age=86400" }
+                });
+            }`
+);
+
 writeFileSync(WORKER_PATH, patched);
 console.log("✓ Injected CF Cache API (URL+status-based, middleware+handler)");

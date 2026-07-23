@@ -3,7 +3,7 @@ export const revalidate = 31536000;
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getArticlesByCategory } from "@/lib/queries";
+import { getArticlesByType } from "@/lib/queries";
 import { siteConfig } from "@/lib/site-config";
 import { ArticleCard } from "@/components/article/ArticleCard";
 import { CategoryJsonLd } from "@/components/article/CategoryJsonLd";
@@ -46,7 +46,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const cat = siteConfig.categories.find((c) => c.key === category);
   if (!cat) notFound();
 
-  const { articles, total } = await getArticlesByCategory(category, 1, PAGE_SIZE);
+  const { articles, total } = await getArticlesByType(category, 1, PAGE_SIZE);
   const totalPages = Math.ceil(total / PAGE_SIZE);
 
   return (

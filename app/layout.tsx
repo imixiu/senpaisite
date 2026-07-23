@@ -44,6 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="/icon.png?v=2" type="image/png" />
         <link rel="stylesheet" href="/article.css" />
         <script
           type="application/ld+json"
